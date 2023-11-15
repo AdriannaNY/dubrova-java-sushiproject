@@ -24,7 +24,7 @@ public class JpaFoodService implements FoodService {
 
     @Override
     public Food getById(int id) {
-        return foodRepository.findById(id).get();
+        return foodRepository.findById(id).orElse(null);
     }
 
     @Override
