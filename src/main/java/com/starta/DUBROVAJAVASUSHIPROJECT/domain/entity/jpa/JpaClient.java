@@ -1,5 +1,6 @@
 package com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa;
 
+import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Cart;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Client;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -8,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "client")
-@Data
 @NoArgsConstructor
 public class JpaClient implements Client {
 
@@ -53,16 +53,51 @@ public class JpaClient implements Client {
     }
 
     @Override
-        public String toString() {
-            return "JpaClient{" +
-                    "id=" + id +
-                    ", name='" + name + '\'' +
-                    ", age=" + age +
-                    ", address='" + address + '\'' +
-                    ", phone=" + phone +
-                    ", email='" + email + '\'' +
-                    ", cart=" + cart +
-                    '}';
-        }
+    public int getId() {
+        return id;
     }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String getPhone() {
+        return phone;
+    }
+
+    @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public Cart getCart() {
+        return cart;
+    }
+
+    @Override
+    public String toString() {
+        return "JpaClient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", cart=" + cart +
+                '}';
+    }
+}
 

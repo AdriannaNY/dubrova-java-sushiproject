@@ -9,6 +9,7 @@ import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaCartRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaClientRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaFoodRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.service.ClientService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,24 +72,22 @@ public class JpaClientService implements ClientService {
         return cart.getTotalPrice() / cart.getAllFoods().size();
     }
 
+    @Transactional
     @Override
     public void addToCartById(int clientId, int foodId) {
         Client client = clientRepository.findById(clientId).orElse(null);
         Food food = foodRepository.findById(foodId).orElse(null);
-        Cart cart = null;
-        if (client != null) {
-            cart = client.getCart();
-        }
-        if (cart != null) {
-            cart.addFood(food);
-        }
+        Cart cart = client.getCart();
+        cart.addFood(food);
     }
 
+    @Transactional
     @Override
     public void deleteFromCart(int clientId, int foodId) {
         getById(clientId).getCart().removeFood(foodRepository.findById(foodId).orElse(null));
     }
 
+    @Transactional
     @Override
     public void clearCart(int clientId) {
         getById(clientId).getCart().clear();

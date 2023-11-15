@@ -3,7 +3,7 @@ package com.starta.DUBROVAJAVASUSHIPROJECT.controller;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Client;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaClient;
 import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.EntityValidationException;
-import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.ThirdTestException;
+import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.EmptyListException;
 import com.starta.DUBROVAJAVASUSHIPROJECT.service.ClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class ClientController {
     public List<Client> getAll() {
         List<Client> clients = clientService.getAll();
         if (clients.isEmpty()) {
-            throw new ThirdTestException("List of clients is empty!");
+            throw new EmptyListException("List of clients is empty!");
         }
         return clients;
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/id/{id}")
     public Client getById (@PathVariable int id){
         return clientService.getById(id);
     }

@@ -35,44 +35,42 @@ public class SecurityConfig {
                                 "/user/username",
 
                                 "/food/id",
-
-                                "/client/add/clientId/foodId",
-                                "/client/delete/clientId/foodId",
-                                "/client/clear/id",
-
-                                "/restaurant/id").hasAnyRole("USER", "ADMIN")
-
-                        .requestMatchers(HttpMethod.GET,
-                                "/client/all",
-                                "/client/id",
-                                "/client/count",
-                                "/client/total/id",
-                                "/client/average/id",
-
                                 "/food/count",
                                 "/food/total",
                                 "/food/average",
 
+                                "/client/all",
+                                "/client/id",
+                                "/client/count",
+                                "/client/total",
+                                "/client/average",
+
+                                "/restaurant/id",
                                 "/restaurant/count",
-                                "/restaurant/total/id",
-                                "/restaurant/average/id").hasRole("ADMIN")
+                                "/restaurant/total",
+                                "/restaurant/average").hasAnyRole("USER", "ADMIN")
 
                         .requestMatchers(HttpMethod.POST,
                                 "/user/add",
                                 "/client/add",
+                                "/client/addtocart",
                                 "/food/add",
                                 "/restaurant/add").hasRole("ADMIN")
 
+                        .requestMatchers(HttpMethod.PUT,
+                                "/client/addtocart").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.DELETE,
-                                "/client/delete/id",
-                                "/client/deletename/name",
+                                "/client/delete",
+                                "/client/deletename",
+                                "/client/deletefromcart",
+                                "/client/clearcart",
 
-                                "/food/delete/id",
-                                "/food/deletename/name",
+                                "/food/delete",
+                                "/food/deletename",
 
-                                "/restaurant/delete/id",
-                                "/restaurant/deletename/name",
-                                "/restaurant/delete/restaurantId/foodId").hasRole("ADMIN")
+                                "/restaurant/delete",
+                                "/restaurant/deletename").hasRole("ADMIN")
 
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());

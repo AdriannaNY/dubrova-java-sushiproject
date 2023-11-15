@@ -3,7 +3,7 @@ package com.starta.DUBROVAJAVASUSHIPROJECT.controller;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Food;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaFood;
 import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.EntityValidationException;
-import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.ThirdTestException;
+import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.EmptyListException;
 import com.starta.DUBROVAJAVASUSHIPROJECT.service.FoodService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class FoodController {
     public List<Food> getAll() {
         List<Food> foods = foodService.getAll();
         if (foods.isEmpty()) {
-            throw new ThirdTestException("List of foods is empty!");
+            throw new EmptyListException("List of foods is empty!");
         }
         return foods;
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/id/{id}")
     public Food getById(@PathVariable int id) {
         return foodService.getById(id);
     }

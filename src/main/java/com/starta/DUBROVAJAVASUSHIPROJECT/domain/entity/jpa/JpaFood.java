@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "food")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class JpaFood implements Food {
@@ -20,7 +19,8 @@ public class JpaFood implements Food {
     private int id;
 
     @Column(name = "name")
-    @Pattern(regexp = "[A-Z][a-z]{2,}")
+    @NotNull
+    @NotBlank
     private String name;
 
     @Column(name = "description")
@@ -33,6 +33,27 @@ public class JpaFood implements Food {
     @Max(value = 999999)
     private double price;
 
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public String toString() {
         return "JpaFood{" +
@@ -42,4 +63,5 @@ public class JpaFood implements Food {
                 ", price='" + price + '\'' +
                 '}';
     }
+
 }
