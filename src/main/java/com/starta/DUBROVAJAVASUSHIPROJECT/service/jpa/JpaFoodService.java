@@ -28,6 +28,11 @@ public class JpaFoodService implements FoodService {
     }
 
     @Override
+    public Food getByName(String name) {
+        return foodRepository.findByName(name);
+    }
+
+    @Override
     public void add(Food food) {
         foodRepository.save(new JpaFood(0, food.getName(), food.getDescription(), food.getPrice()));
     }

@@ -40,6 +40,12 @@ public class JpaClientService implements ClientService {
     }
 
     @Override
+    public Client getByName(String name) {
+        return clientRepository.findByName(name);
+    }
+
+
+    @Override
     public void add(Client client) {
         JpaClient savedClient = clientRepository.save(new JpaClient(0, client.getName(),
                 client.getAge(), client.getAddress(), client.getPhone(), client.getEmail()));

@@ -8,6 +8,7 @@ public interface ClientService {
 
     List<Client> getAll();
     Client getById(int id);
+    Client getByName(String name);
     void add(Client client);
     void deleteById(int id);
     void deleteByName(String name);

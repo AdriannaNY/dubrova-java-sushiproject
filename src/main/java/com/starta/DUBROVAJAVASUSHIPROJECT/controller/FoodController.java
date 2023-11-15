@@ -32,6 +32,11 @@ public class FoodController {
         return foodService.getById(id);
     }
 
+    @GetMapping(value = "/name/{name}")
+    public Food getByName(@PathVariable String name) {
+        return foodService.getByName(name);
+    }
+
     @PostMapping(value = "/add")
     public Food add(@Valid @RequestBody JpaFood food) {
         try {

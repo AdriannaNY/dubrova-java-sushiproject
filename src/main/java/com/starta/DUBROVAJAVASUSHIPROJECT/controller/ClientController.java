@@ -32,6 +32,11 @@ public class ClientController {
         return clientService.getById(id);
     }
 
+    @GetMapping(value = "/name/{name}")
+    public Client getByName (@PathVariable String name){
+        return clientService.getByName(name);
+    }
+
     @PostMapping(value = "/add")
     public Client add (@Valid @RequestBody JpaClient client){
         try {

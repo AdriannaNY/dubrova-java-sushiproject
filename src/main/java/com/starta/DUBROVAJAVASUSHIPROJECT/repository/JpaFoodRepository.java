@@ -1,11 +1,14 @@
 package com.starta.DUBROVAJAVASUSHIPROJECT.repository;
 
+import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Food;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaFood;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface JpaFoodRepository extends JpaRepository<JpaFood, Integer> {
+
+    Food findByName(String name);
 
     @Transactional
     void deleteByName(String name);
