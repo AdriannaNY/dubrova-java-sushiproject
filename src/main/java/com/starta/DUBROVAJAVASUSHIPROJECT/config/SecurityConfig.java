@@ -52,13 +52,14 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.POST,
                                 "/user/add",
+
                                 "/client/add",
                                 "/client/addtocart",
-                                "/food/add",
-                                "/restaurant/add").hasRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.PUT,
-                                "/client/addtocart").hasRole("ADMIN")
+                                "/food/add",
+
+                                "/restaurant/add",
+                                "/restaurant/addtomenu").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.DELETE,
                                 "/client/delete",
@@ -70,7 +71,9 @@ public class SecurityConfig {
                                 "/food/deletename",
 
                                 "/restaurant/delete",
-                                "/restaurant/deletename").hasRole("ADMIN")
+                                "/restaurant/deletename",
+                                "/restaurant/deletefrommenu",
+                                "/restaurant/clearmenu").hasRole("ADMIN")
 
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
