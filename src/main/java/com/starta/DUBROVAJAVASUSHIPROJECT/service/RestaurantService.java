@@ -7,6 +7,8 @@ import java.util.List;
 public interface RestaurantService {
     List<Restaurant> getAll();
     Restaurant getById(int id);
+    Restaurant getByCity(String city);
+    Restaurant getByName(String name);
     void add(Restaurant restaurant);
     void deleteById(int id);
     void deleteByName(String name);

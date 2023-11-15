@@ -32,6 +32,16 @@ public class RestaurantController {
         return restaurantService.getById(id);
     }
 
+    @GetMapping(value = "/city/{city}")
+    public Restaurant getByCity (@PathVariable String city){
+        return restaurantService.getByCity(city);
+    }
+
+    @GetMapping(value = "/name/{name}")
+    public Restaurant getByName (@PathVariable String name){
+        return restaurantService.getByName(name);
+    }
+
     @PostMapping(value = "/add")
     public Restaurant add (@Valid @RequestBody JpaRestaurant restaurant){
         try {

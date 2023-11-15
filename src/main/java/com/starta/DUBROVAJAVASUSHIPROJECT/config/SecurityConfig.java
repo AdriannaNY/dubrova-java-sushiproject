@@ -35,17 +35,21 @@ public class SecurityConfig {
                                 "/user/username",
 
                                 "/food/id",
+                                "/food/name",
                                 "/food/count",
                                 "/food/total",
                                 "/food/average",
 
                                 "/client/all",
                                 "/client/id",
+                                "/client/name",
                                 "/client/count",
                                 "/client/total",
                                 "/client/average",
 
                                 "/restaurant/id",
+                                "/restaurant/city",
+                                "/restaurant/name",
                                 "/restaurant/count",
                                 "/restaurant/total",
                                 "/restaurant/average").hasAnyRole("USER", "ADMIN")

@@ -39,6 +39,14 @@ public class JpaRestaurantService implements RestaurantService {
         return restaurantRepository.findById(id).orElse(null);
     }
 
+    public Restaurant getByCity(String city) {
+        return restaurantRepository.findByCity(city);
+    }
+
+    public Restaurant getByName(String name) {
+        return restaurantRepository.findByName(name);
+    }
+
     @Override
     public void add(Restaurant restaurant) {
         JpaRestaurant savedRestaurant = restaurantRepository.save(new JpaRestaurant(0, restaurant.getName(),

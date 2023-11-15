@@ -9,6 +9,7 @@ public interface FoodService {
 
     List<Food> getAll();
     Food getById(int id);
+    Food getByName(String name);
     void add(Food food);
     void deleteById(int id);
     void deleteByName(String name);
