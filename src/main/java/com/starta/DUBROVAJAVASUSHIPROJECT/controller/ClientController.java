@@ -67,17 +67,17 @@ public class ClientController {
         return clientService.getAveragePriceById(id);
     }
 
-    @GetMapping(value = "/add/{clientId}/{foodId}")
+    @PostMapping(value = "/addtocart/{clientId}/{foodId}")
     public void addToCartById (@PathVariable int clientId, @PathVariable int foodId){
         clientService.addToCartById(clientId, foodId);
     }
 
-    @DeleteMapping(value = "/delete/{clientId}/{foodId}")
+    @DeleteMapping(value = "/deletefromcart/{clientId}/{foodId}")
     public void deleteFromCart (@PathVariable int clientId, @PathVariable int foodId){
         clientService.deleteFromCart(clientId, foodId);
     }
 
-    @GetMapping(value = "/clear/{id}")
+    @DeleteMapping(value = "/clearcart/{id}")
     public void clearCart (@PathVariable int id){
         clientService.clearCart(id);
     }
