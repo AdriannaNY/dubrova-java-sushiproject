@@ -13,20 +13,24 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserService service;
 
+    // This method is available for all even for not authenticated users
     @GetMapping(value = "/all")
-    public List<User> getAll(){
-        return userService.getAll();
+    public List<User> getAll() {
+        return service.getAll();
     }
 
+    // This method is available for authenticated users and admins
     @GetMapping(value = "/username/{username}")
     public UserDetails getByName(@PathVariable String username) {
-        return userService.loadUserByUsername(username);
+        return service.loadUserByUsername(username);
     }
 
+    // This method is available only for authenticated admins
     @PostMapping(value = "/add")
     public User add(@RequestBody User user) {
-        return userService.saveUser(user);
+        return service.saveUser(user);
     }
+
 }

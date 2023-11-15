@@ -18,13 +18,14 @@ import java.util.Set;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Autowired
-    private BCryptPasswordEncoder encoder;
+    private BCryptPasswordEncoder encoder;   // must add to bean -> config package
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = repository.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found!");
@@ -33,24 +34,24 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
-        User foundUser = userRepository.findByUsername(user.getUsername());
+        User foundUser = repository.findByUsername(user.getUsername());
 
-        if (foundUser != null) {
+        if (foundUser != null) {   // if user already exist - stop and return null
             return null;
         }
 
         Set<Role> roles = new HashSet<>();
-        roles.add(new Role(3, "ROLE_USER"));
+        roles.add(new Role(2, "ROLE_USER"));
         user.setRoles(roles);
 
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     public List<User> getAll() {
-        return userRepository.findAll();
+        return repository.findAll();
     }
-}
 
+}

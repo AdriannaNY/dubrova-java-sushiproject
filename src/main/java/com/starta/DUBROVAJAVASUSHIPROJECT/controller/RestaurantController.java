@@ -42,6 +42,7 @@ public class RestaurantController {
         return restaurantService.getByName(name);
     }
 
+
     @PostMapping(value = "/add")
     public Restaurant add (@Valid @RequestBody JpaRestaurant restaurant){
         try {
@@ -86,6 +87,7 @@ public class RestaurantController {
     public void deleteFromMenu (@PathVariable int restaurantId, @PathVariable int foodId){
         restaurantService.deleteFromMenu(restaurantId, foodId);
     }
+
     @DeleteMapping(value = "/clearmenu/{id}")
     public void clearMenu (@PathVariable int id){
         restaurantService.clearMenu(id);
