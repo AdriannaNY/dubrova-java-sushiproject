@@ -38,7 +38,6 @@ public class JpaRestaurantService implements RestaurantService {
     public Restaurant getById(int id) {
         return restaurantRepository.findById(id).orElse(null);
     }
-
     public Restaurant getByCity(String city) {
         return restaurantRepository.findByCity(city);
     }

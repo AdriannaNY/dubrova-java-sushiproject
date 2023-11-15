@@ -12,8 +12,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-@Data
-@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
@@ -36,9 +34,46 @@ public class User implements UserDetails {
     )
     private Set<Role> roles;
 
+    public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     @JsonIgnore
