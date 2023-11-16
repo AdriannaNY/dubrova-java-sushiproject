@@ -47,6 +47,12 @@ public class FoodController {
         }
     }
 
+    @PutMapping(value = "/update/{foodId}")
+    public Food update (@PathVariable int foodId, @Valid @RequestBody JpaFood food) {
+        foodService.update(foodId, food);
+        return food;
+    }
+
     @DeleteMapping(value = "/delete/{id}")
     public void deleteById(@PathVariable int id) {
         foodService.deleteById(id);

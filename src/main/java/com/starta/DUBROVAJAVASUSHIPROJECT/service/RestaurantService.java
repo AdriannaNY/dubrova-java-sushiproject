@@ -10,6 +10,7 @@ public interface RestaurantService {
     Restaurant getByCity(String city);
     Restaurant getByName(String name);
     void add(Restaurant restaurant);
+    void update(int restaurantId, Restaurant restaurant);
     void deleteById(int id);
     void deleteByName(String name);
     int getCount();

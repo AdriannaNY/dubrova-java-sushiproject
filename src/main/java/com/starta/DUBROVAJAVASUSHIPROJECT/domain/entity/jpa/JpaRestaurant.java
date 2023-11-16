@@ -7,9 +7,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "restaurant")
+@Setter
 @NoArgsConstructor
 public class JpaRestaurant implements Restaurant {
 
@@ -53,7 +55,6 @@ public class JpaRestaurant implements Restaurant {
         this.phone = phone;
         this.email = email;
     }
-
 
     @Override
     public int getId() {

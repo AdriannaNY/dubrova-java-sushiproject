@@ -5,6 +5,7 @@ import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Menu;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Restaurant;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaMenu;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaRestaurant;
+import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.ResourceNotFoundException;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaFoodRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaMenuRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaRestaurantRepository;
@@ -51,6 +52,20 @@ public class JpaRestaurantService implements RestaurantService {
         JpaRestaurant savedRestaurant = restaurantRepository.save(new JpaRestaurant(0, restaurant.getName(),
                 restaurant.getCity(), restaurant.getAddress(), restaurant.getPhone(), restaurant.getEmail()));
         menuRepository.save(new JpaMenu(savedRestaurant));
+    }
+
+    @Override
+    public void update(int restaurantId, Restaurant restaurant) {
+        JpaRestaurant updatedRestaurant = restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new ResourceNotFoundException("Restaurant is not exist with id: " + restaurantId));
+
+        updatedRestaurant.setName(restaurant.getName());
+        updatedRestaurant.setCity(restaurant.getCity());
+        updatedRestaurant.setAddress(restaurant.getAddress());
+        updatedRestaurant.setPhone(restaurant.getPhone());
+        updatedRestaurant.setEmail(restaurant.getEmail());
+
+        restaurantRepository.save(updatedRestaurant);
     }
 
     @Override
