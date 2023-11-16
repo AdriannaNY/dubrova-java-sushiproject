@@ -6,9 +6,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "client")
+@Setter
 @NoArgsConstructor
 public class JpaClient implements Client {
 

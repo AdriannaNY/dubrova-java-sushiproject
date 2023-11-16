@@ -10,6 +10,7 @@ public interface ClientService {
     Client getById(int id);
     Client getByName(String name);
     void add(Client client);
+    void update(int clientId, Client client);
     void deleteById(int id);
     void deleteByName(String name);
     int getCount();

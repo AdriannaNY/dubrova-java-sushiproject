@@ -2,6 +2,7 @@ package com.starta.DUBROVAJAVASUSHIPROJECT.service.jpa;
 
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Food;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaFood;
+import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.ResourceNotFoundException;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaFoodRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,18 @@ public class JpaFoodService implements FoodService {
     @Override
     public void add(Food food) {
         foodRepository.save(new JpaFood(0, food.getName(), food.getDescription(), food.getPrice()));
+    }
+
+    @Override
+    public void update(int foodId, Food food) {
+        JpaFood updatedFood = foodRepository.findById(foodId)
+                .orElseThrow(() -> new ResourceNotFoundException("Food is not exist with id: " + foodId));
+
+        updatedFood.setName(food.getName());
+        updatedFood.setDescription(food.getDescription());
+        updatedFood.setPrice(food.getPrice());
+
+        foodRepository.save(updatedFood);
     }
 
     @Override

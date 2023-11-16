@@ -11,6 +11,7 @@ public interface FoodService {
     Food getById(int id);
     Food getByName(String name);
     void add(Food food);
+    void update(int foodId, Food food);
     void deleteById(int id);
     void deleteByName(String name);
     int getCount();

@@ -5,6 +5,7 @@ import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Client;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.Food;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaCart;
 import com.starta.DUBROVAJAVASUSHIPROJECT.domain.entity.jpa.JpaClient;
+import com.starta.DUBROVAJAVASUSHIPROJECT.exception.exceptions.ResourceNotFoundException;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaCartRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaClientRepository;
 import com.starta.DUBROVAJAVASUSHIPROJECT.repository.JpaFoodRepository;
@@ -49,6 +50,20 @@ public class JpaClientService implements ClientService {
         JpaClient savedClient = clientRepository.save(new JpaClient(0, client.getName(),
                 client.getAge(), client.getAddress(), client.getPhone(), client.getEmail()));
         cartRepository.save(new JpaCart(savedClient));
+    }
+
+    @Override
+    public void update(int clientId, Client client) {
+        JpaClient updatedClient = clientRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException("Client is not exist with id: " + clientId));
+
+        updatedClient.setName(client.getName());
+        updatedClient.setAge(client.getAge());
+        updatedClient.setAddress(client.getAddress());
+        updatedClient.setPhone(client.getPhone());
+        updatedClient.setEmail(client.getEmail());
+
+        clientRepository.save(updatedClient);
     }
 
     @Override

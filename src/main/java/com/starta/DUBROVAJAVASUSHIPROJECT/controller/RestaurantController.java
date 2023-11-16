@@ -53,6 +53,12 @@ public class RestaurantController {
         }
     }
 
+    @PutMapping(value = "/update/{restaurantId}")
+    public Restaurant update (@PathVariable int restaurantId, @Valid @RequestBody JpaRestaurant restaurant) {
+        restaurantService.update(restaurantId, restaurant);
+        return restaurant;
+    }
+
     @DeleteMapping(value = "/delete/{id}")
     public void deleteById (@PathVariable int id){
         restaurantService.deleteById(id);

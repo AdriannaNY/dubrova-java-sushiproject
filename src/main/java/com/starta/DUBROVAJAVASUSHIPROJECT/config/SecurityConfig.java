@@ -65,6 +65,13 @@ public class SecurityConfig {
                                 "/restaurant/add",
                                 "/restaurant/addtomenu").hasRole("ADMIN")
 
+                        .requestMatchers(HttpMethod.PUT,
+                                "/client/update",
+
+                                "/food/update",
+
+                                "/restaurant/update").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.DELETE,
                                 "/client/delete",
                                 "/client/deletename",

@@ -47,6 +47,12 @@ public class ClientController {
         }
     }
 
+    @PutMapping(value = "/update/{clientId}")
+    public Client update (@PathVariable int clientId, @Valid @RequestBody JpaClient client) {
+        clientService.update(clientId, client);
+        return client;
+    }
+
     @DeleteMapping(value = "/delete/{id}")
     public void deleteById (@PathVariable int id){
         clientService.deleteById(id);

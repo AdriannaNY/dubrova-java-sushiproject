@@ -6,10 +6,11 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "food")
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
 public class JpaFood implements Food {
 
@@ -33,6 +34,12 @@ public class JpaFood implements Food {
     @Max(value = 999999)
     private double price;
 
+    public JpaFood(int id, String name, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     @Override
     public int getId() {
